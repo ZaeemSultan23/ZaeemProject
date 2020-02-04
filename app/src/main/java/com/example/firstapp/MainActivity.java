@@ -1,0 +1,60 @@
+package com.example.firstapp;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+public class MainActivity extends AppCompatActivity {
+    private ListView listObj;
+
+    private String[] myData={"Lahore","Islamabad","Karachi","Faislabad","Rawalpindi"};
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        variableInt();
+        creatingAdapter();
+
+    }
+
+    private void creatingAdapter()
+    {
+        ArrayAdapter<String> arrayObj=new ArrayAdapter(this,android.R.layout.simple_list_item_1,myData);
+        listObj.setAdapter(arrayObj);
+
+        listObj.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 0) {
+                    Intent intent = new Intent(MainActivity.this, lahore.class);
+                    startActivity(intent);
+                } else if (position == 1) {
+                    Intent intent1 = new Intent(MainActivity.this, islamabad.class);
+                    startActivity(intent1);
+                } else if (position == 2) {
+
+                    Intent intent2 = new Intent(MainActivity.this, karachi.class);
+                    startActivity(intent2);
+                } else if (position == 3) {
+                    Intent intent3 = new Intent(MainActivity.this, faislabad.class);
+                    startActivity(intent3);
+                } else if (position == 4) {
+                    Intent intent4 = new Intent(MainActivity.this, rawalpindi.class);
+                    startActivity(intent4);
+                }
+            }
+        });
+
+
+    }
+    private void variableInt()
+    {
+        listObj=findViewById(R.id.listView);
+    }
+}
